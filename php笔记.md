@@ -186,12 +186,23 @@ switch内容可为小数。
 #### --enable-fpm
 包含php-fpm扩展
 #### --with-mysql（7.0之前）/--with-pdo-mysql（7.0之后）
-包含mysql
+包含mysql库
 
+### 配置php/
 
+### php-fpm
+#### 配置 php/etc/php-fpm.d/www.conf
+````
+user = www-data    # 设置启动使用的用户
+group = www-data    # 设置启动使用的用户组
+listen = /tmp/php-fpm.sock   # 设置php监听。nginx中的fastcgi_pass选项应该与之一致。也可设置成ip:port，如127.0.0.1:9000 
+listen.mode = 0666    # 监听模式
+````
+#### 配置 php/etc/php-fom.conf
 
-
-
+#### php-fpm命令
+* 启动 ````php/sbin/php-fpm````
+* 重启、终止。使用kill命令，附加INT（终止）、USR2（重启）等信号
 
 
 

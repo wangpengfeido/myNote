@@ -18,7 +18,7 @@ http{    # 协议级别块
 
             error_page ...错误码 uri    # 在错误时访问链接
 
-            fastcgi_pass    # 代理到的cgi服务地址
+            fastcgi_pass    # php的cgi服务地址（对应php-fpm的listen配置）
         }
     }
 }
