@@ -198,6 +198,7 @@ group = www-data    # 设置启动使用的用户组
 listen = /tmp/php-fpm.sock   # 设置php监听。nginx中的fastcgi_pass选项应该与之一致。也可设置成ip:port，如127.0.0.1:9000 
 listen.mode = 0666    # 监听模式
 ````
+
 #### 配置 php/etc/php-fom.conf
 
 #### php-fpm命令

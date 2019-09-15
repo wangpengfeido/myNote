@@ -7,18 +7,20 @@ http{    # 协议级别块
         server_name www.trenfash.cn;    # 虚拟主机名称
 
         location uri {    # 请求级别块
-            root;    # 资源路径（搜索时不带location uri）
+            root 路径;    # 资源路径（搜索时不带location uri）
 
-            alias;    # 资源路径(搜索时带location uri)
+            alias 路径;    # 资源路径(搜索时带location uri)
+
+            index ...路径;    # 默认内部重定向到的文件
             
             proxy_pass http://127.0.0.1:8080;    # 代理到的地址
 
-            try_files ...请求路径 uri    # 尝试读取文件，读不到时进行内部重定向
-            try_files ...请求路径 =返回码    # 读不到文件时返回返回码
+            try_files ...请求路径 uri;    # 尝试读取文件，读不到时进行内部重定向
+            try_files ...请求路径 =返回码;    # 读不到文件时返回返回码
 
-            error_page ...错误码 uri    # 在错误时访问链接
+            error_page ...错误码 uri;    # 在错误时访问链接
 
-            fastcgi_pass    # php的cgi服务地址（对应php-fpm的listen配置）
+            fastcgi_pass pass地址;    # php的cgi服务地址（对应php-fpm的listen配置）
         }
     }
 }
@@ -52,6 +54,13 @@ $args参数是否存在，存在则为"?"，不存在则为""
 #### @
 定义命名location区段，这些区段客户段不能访问，只可以由内部产生的请
 求来访问，如try_files或error_page等
+#### 优先级
+````
+=
+^~
+~    ~*
+无修饰符
+````
 
 
 ## 命令
