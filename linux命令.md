@@ -90,6 +90,12 @@ move [参数] 源路径 目标路径
 * -r    递归处理，将指定目录下的所有文件与子目录一并处理
 * -f    强行复制文件或目录，不论目标文件或目录是否已存在
 
+#### touch
+修改文件或目录的时间属性，如果文件不存在，则会创建一个新文件。
+````
+touch [-acfm][-d<日期时间>][-r<参考文件或目录>] [-t<日期时间>][--help][--version][文件或目录…]
+````
+
 #### cat
 连接文件并打印到标准输出设备
 
@@ -243,7 +249,7 @@ groupadd [选项] 用户组名
 #### adduser
 添加用户
 ````
-adduser [选项] 用户名
+adduser [-c comment] [-d home_dir] [-e expire_date] [-f inactive_time] [-g initial_group] [-G group[,...]] [-m [-k skeleton_dir] | -M] [-p passwd] [-s shell] [-u uid [ -o]] [-n] [-r] loginid
 ````
 选项：
 * -c \<备注\>：加上备注文字。备注文字会保存在passwd的备注栏位中；
@@ -259,6 +265,23 @@ adduser [选项] 用户名
 * -r：建立系统帐号；
 * -s \<shell\>：指定用户登入后所使用的shell；
 * -u \<uid\>：指定用户id。
+
+#### passwd
+更改用户密码。
+````
+passwd [-k] [-l] [-u [-f]] [-d] [-S] [username]
+````
+
+#### ln
+为一个文件在另一个位置建立同步链接
+````
+[-bdfinsvF] [-S backup-suffix] [-V {numbered,existing,simple}]
+[--help] [--version] [--]
+````
+选项：
+* -s 软链接(符号链接)
+
+
 
 ## 文件
 
@@ -328,8 +351,32 @@ nano 文件名
 
 ## VSFTPD
 
+#### service vsftpd start
+启动
+
 #### service vsftpd restart
-重启vsftpd
+重启
+
+#### service vsftpd status
+查看状态
+
+#### 参考配置
+* 添加用户，例如
+````
+useradd uftp
+passwd uftp
+````
+* /etc/vsftpd.conf
+````
+# 可写
+write_enable=YES
+# 登录用户配置
+userlist_file=/etc/vsftpd.user_list
+userlist_enable=YES
+userlist_deny=NO
+# 目录配置
+local_root=/opt
+````
 
 ## deamon
 
