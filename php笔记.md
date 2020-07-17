@@ -187,6 +187,24 @@ switch内容可为小数。
 包含php-fpm扩展
 #### --with-mysql（7.0之前）/--with-pdo-mysql（7.0之后）
 包含mysql库
+#### --with-mysqli
+包含mysqli库
+#### --with-zlib
+包含zlib扩展
+#### --with-curl
+包含curl扩展
+#### --with-openssl
+包含openssl扩展
+
+### 单独安装mysqli
+1. 源码包目录：````cd php-7.3.15/ext/mysqli````
+2. 使用安装好的php中的phpize命令生成configure文件：````/php/bin/phpize````
+3. ````./configure  --with-php-config=/php/bin/php-config --with-mysqli````
+4. ````make````
+5. ````make test````
+6. ````make install````
+7. 在/php/lib/php/extensions/xxxx 目录下生成mysqli.so，将其cp到/php/ext
+8. 在php.ini文件中配置````extension_dir=/php/ext````,````extension=mysqli.so````
 
 ### 配置php/
 
